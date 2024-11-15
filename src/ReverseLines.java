@@ -1,9 +1,6 @@
 import java.io.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
 
-public class ReplaceWord {
+public class ReverseLines {
     public static void main(String[] args) {
         String path = "./src/input.txt";
 
@@ -11,14 +8,16 @@ public class ReplaceWord {
         try (BufferedReader br = new BufferedReader(new FileReader(path));
              PrintWriter writer = new PrintWriter(new FileWriter("./src/output"))) {
 
-            String line = br.readLine();
-            String[] keyWords = line.split(" -> ");
+            String line ;
+
 
             while ((line = br.readLine()) != null) {
 
-                line=line.replaceAll(keyWords[0], keyWords[1]);
+              StringBuilder reversedLine=new StringBuilder(line);
+              reversedLine.reverse();
 
-                writer.write(line);
+                writer.write(String.valueOf(reversedLine));
+                writer.write(System.lineSeparator());
             }
 
 
@@ -27,5 +26,6 @@ public class ReplaceWord {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 }
